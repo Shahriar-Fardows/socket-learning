@@ -8,7 +8,7 @@
   <body>
     <h1 id="time"></h1>
 
-    <input type="text" id="message" />
+    <input type="text" id="data" />
     <button onclick="send" type="submit">Send</button>
 
     <div>
@@ -23,6 +23,11 @@
       const socket = io();
 
       //send message
+
+      const send = () => {
+        const message = document.getElementById("data").value;
+        socket.emit("data", message);
+      };
 
 
       //time update
