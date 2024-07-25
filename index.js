@@ -32,7 +32,7 @@ io.on('connection', (socket) => {
     // Handle incoming messages
     socket.on('data', (msg) => {
         console.log('Message received:', msg);
-        io.emit('message', msg);
+        io.emit('data', msg);
     });
    
     
