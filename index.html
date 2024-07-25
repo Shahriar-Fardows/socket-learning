@@ -9,39 +9,32 @@
     <h1 id="time"></h1>
 
     <input type="text" id="data" />
-    <button onclick="send" id="send">Send</button>
-
-    <div>
-      <h1>Message</h1>
-      <ul id="messages"></ul>
-    </div>
+    <button onclick="send()" id="send">Send</button>
 
     <!-- socket connection  -->
-
     <script src="/socket.io/socket.io.js"></script>
     <script>
       const socket = io();
 
-      //send message
-
-      function  send() {
+      // Function to send message
+      const send = () => {
         const message = document.getElementById("data").value;
         socket.emit("data", message);
-        alert("Message sent", message);
-      }
+        alert("Message sent: " + message);
+      };
 
-      // const send = () => {
-      //   const message = document.getElementById("data").value;
-      //   socket.emit("data", message);
-      //   alert("Message sent", message);
-      // };
-
-
-      //time update
-
+      // Time update
       socket.on("message", (data) => {
-        document.getElementById("time").innerHTML = "";
         document.getElementById("time").innerHTML = data;
+      });
+
+      // Error handling for socket connection
+      socket.on("connect_error", (error) => {
+        console.error("Connection error:", error);
+      });
+
+      socket.on("disconnect", (reason) => {
+        console.warn("Disconnected:", reason);
       });
     </script>
   </body>
