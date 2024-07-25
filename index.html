@@ -31,9 +31,19 @@
       const send = () => {
         const message = document.getElementById("data").value;
         socket.emit("data", message);
-        alert("Message sent", message);
+        // alert("Message sent", message);
       };
 
+      // message update
+
+      socket.on('data', (data)=>{
+        const ul = document.createElement('ul');
+        const li = document.createElement('li');
+        li.innerHTML = data;
+        ul.appendChild(li);
+        document.getElementById('AllData').appendChild(ul);
+
+      })
 
       //time update
 
