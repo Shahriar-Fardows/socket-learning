@@ -6,19 +6,27 @@
     <title>Socket 1st project</title>
   </head>
   <body>
-
     <h1 id="time"></h1>
 
+    <input type="text" id="message" />
+    <button onclick="send" type="submit">Send</button>
+
+    <div>
+      <h1>Message</h1>
+      <ul id="messages"></ul>
+    </div>
 
     <!-- socket connection  -->
-
 
     <script src="/socket.io/socket.io.js"></script>
     <script>
       const socket = io();
 
+
+      //time update
+
       socket.on("message", (data) => {
-        document.getElementById("time").innerHTML = '';
+        document.getElementById("time").innerHTML = "";
         document.getElementById("time").innerHTML = data;
       });
     </script>
