@@ -29,6 +29,11 @@ io.on('connection', (socket) => {
         socket.send(`The current time is: ${time}`);
     }, 1000);
 
+    // Handle incoming messages
+    socket.on('data', (msg) => {
+        console.log('Message received:', msg);
+        io.emit('message', msg);
+    });
    
     
 
